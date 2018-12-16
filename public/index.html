@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Subscribe to CosmoFarmer.com</title>
+    <script type="text/javascript" src="execute.js"></script>
+    <style>
+        /* reset browser styles */
+        html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+        table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed,
+        figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,
+        time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            font-size: 100%;
+            vertical-align: baseline;
+        }
+        article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+            display: block;
+        }
+        body {
+            line-height: 1.2;
+        }
+        ol {
+            padding-left: 1.4em;
+            list-style: decimal;
+        }
+        ul {
+            padding-left: 1.4em;
+            list-style: square;
+        }
+
+        /* end reset browser styles */
+
+        body {
+            width: 760px;
+            margin: 0 auto;
+            background-color: rgb(0,51,102);
+            color: rgb(255,255,255);
+        }
+
+        h1 {
+            font-size: 2em;
+            font-family: Tahoma, Geneva, sans-serif;
+            font-weight: normal;
+            border-bottom: dotted 2px rgba(255,255,255,.5);
+            padding-bottom: 4px;
+            margin: 25px 0;
+        }
+
+        p {
+            margin-bottom: 25px;
+        }
+
+        .subform {
+            font-size: 1.2em;
+            color: white;
+            font-family:Tahoma, Geneva, sans-serif;
+        }
+
+        .subform .label {
+            display: inline-block;
+            width: 200px;
+            vertical-align: top;
+            text-align: right;
+            margin-right: 10px;
+            font-weight: bold;
+            color: rgba(255,255,255,.5);
+        }
+        .subform input[type="submit"]  {
+            margin-left: 220px;
+            padding: 10px 25px;
+            font-size: 1em;
+            color: white;
+            background: rgb(0,102,153);
+            background: linear-gradient(to bottom, rgba(255,255,255,.1) 40%, rgba(255,255,255,.5));
+            border-radius: 5px;
+            box-shadow: 0 0 4px white;
+        }
+        .subform select {
+            font-size: 1.2em;
+        }
+        .subform input[type="text"], .subform textarea {
+            border-radius: 5px;
+            border: none;
+            background-color: rgba(255,255,255,.5);
+            color: rgba(255,255,255,1);
+            font-size: 1.2em;
+            box-shadow: inset 0 0 10px rgba(255,255,255,.75);
+            width: 500px;
+            padding: 5px;
+        }
+        .subform input[type="text"]:focus, .subform textarea:focus {
+            background-color: white;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+<h1>Reader Subscription Form</h1>
+<form class="subform" action="javascript:void(0);">
+    <p>
+        <label for="name1" class="label">What is your name?</label>
+        <input type="text" name="name1" id="name1">
+    </p>
+    <p>
+        <label for="email1" class="label">What is your email address?</label>
+        <input type="text" name="email1" id="email1">
+    </p>
+    <p>
+        <label for="age1" class="label">What is your age?</label>
+        <input type="text1" name="age1" id="age1">
+    </p>
+    <p> <span class="label">Rate your apartment farming skills</span>
+        <label>
+            <input name="skill" type="radio" value="novice">
+            Novice</label>
+        <label>
+            <input name="skill" type="radio" value="intermediate">
+            Intermediate</label>
+        <label>
+            <input name="skill" type="radio" value="advanced">
+            Advanced</label>
+    </p>
+    <p>
+        <label for="refer" class="label">Where did you hear about us? </label>
+        <select name="refer" id="refer">
+            <option value="null">Select One</option>
+            <option value="1">Friend</option>
+            <option value="2">Herban Jungle</option>
+            <option value="3">Compost Today</option>
+            <option value="4">Vanity Fair</option>
+        </select>
+    </p>
+    <p>
+        <label for="comments" class="label">Any additional comments? </label>
+        <textarea name="comments" cols="35" rows="4" id="comments"></textarea>
+    </p>
+    <p>
+        <input id="submitButton" type="submit" value="Submit">
+    </p>
+</form>
+</body>
+
+<script>
+    $("#submitButton").click(function(){
+        var name1 = document.getElementById("name1").value;
+        var email1 = document.getElementById("email1").value;
+        var age1 = document.getElementById("age1").value;
+
+        $.post("/myPost",
+            {
+                name1: name1,
+                email1: email1,
+                age1: age1
+            },
+            function(data, status){
+                document.getElementById("myDiv").innerHTML = data.testdata;
+
+            });
+    });
+</script>
+</html>
